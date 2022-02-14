@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: money
+  name: money-deployment
+  namespace: money
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: money
+  template:
+    metadata:
+      labels:
+        app: money
+    spec:
+      containers:
+        - image: pricing:v1
+          imagePullPolicy: Never  
+          name: money
+          ports:
+            - containerPort: 80
